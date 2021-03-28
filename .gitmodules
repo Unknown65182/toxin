@@ -1,6 +1,0 @@
-[submodule "toxin.server"]
-	path = server
-	url = https://github.com/Unknown65182/toxin.server
-[submodule "toxin.client"]
-	path = client
-	url = https://github.com/Unknown65182/toxin.client
