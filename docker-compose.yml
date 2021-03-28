@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile.dev
+    env_file:
+      - ./server/.env.dev
+    ports:
+      - 3001:3001
+    command: yarn start:dev
+    volumes:
+      - ./server:/usr/server
+      - ./server/node_modules:/usr/server/node_modules
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile.dev
+    env_file:
+      - ./client/.env.dev
+    ports:
+      - 3000:3000
+    command: yarn dev
+    volumes:
+      - ./client:/usr/client
+      - ./client/node_modules:/usr/client/node_modules
