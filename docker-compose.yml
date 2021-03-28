@@ -13,6 +13,8 @@ services:
     volumes:
       - ./server:/usr/server
       - ./server/node_modules:/usr/server/node_modules
+    depends_on:
+      - mongodb
   client:
     build:
       context: ./client
@@ -25,3 +27,15 @@ services:
     volumes:
       - ./client:/usr/client
       - ./client/node_modules:/usr/client/node_modules
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    environment:
+      MONGO_INITDB_DATABASE: toxin
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword
+    ports:
+      - "27017-27019:27017-27019"
+    volumes:
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - ./mongo-volume:/data/db

@@ -1,0 +1,8 @@
+FROM node:current-alpine as common
+
+WORKDIR /usr/common
+RUN npm install -g nodemon
+RUN yarn install
+COPY ./common ./
+
+ENTRYPOINT ["nodemon", "/usr/common/*"]
